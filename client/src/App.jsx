@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
+import Home from './Pages/Home/Home'
 import LoginPage from './Pages/Login Page/loginPage'
 import RegistrationPage from './Pages/Registration Page/registrationPage'
 import Dashboard from './Pages/Dashboard/Dashboard'
@@ -21,6 +22,9 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Public landing page */}
+        <Route path="/" element={<Home />} />
+
         {/* Public auth screens */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />
@@ -101,9 +105,8 @@ function App() {
           } 
         />
 
-        {/* Fallback navigation */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        {/* Fallback — unknown routes go to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   )
